@@ -1,17 +1,27 @@
 // @ts-check
-import { defineConfig } from "astro/config";
-import mdx from "@astrojs/mdx";
-import sitemap from "@astrojs/sitemap";
+import { defineConfig } from 'astro/config';
 
-import cloudflare from "@astrojs/cloudflare";
+import tailwindcss from '@tailwindcss/vite';
+import Icons from 'unplugin-icons/vite';
+import basicSsl from '@vitejs/plugin-basic-ssl';
 
-// https://astro.build/config
+import cloudflare from '@astrojs/cloudflare';
+
+const isDev = process.env.NODE_ENV !== 'production';
+
 export default defineConfig({
-	site: "https://example.com",
-	integrations: [mdx(), sitemap()],
-	adapter: cloudflare({
-		platformProxy: {
-			enabled: true,
-		},
-	}),
+  vite: {
+    plugins: [
+      ...(isDev ? [basicSsl()] : []),
+      tailwindcss(),
+      Icons({
+        compiler: 'astro',
+      }),
+    ],
+  },
+  adapter: cloudflare({
+    platformProxy: {
+      enabled: true,
+    },
+  }),
 });

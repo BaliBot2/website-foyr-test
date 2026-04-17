@@ -1,14 +1,17 @@
 {
-	"name": "website-foyr-test",
-	"compatibility_date": "2025-10-08",
-	"compatibility_flags": ["nodejs_compat"],
 	"main": "./dist/_worker.js/index.js",
+	"name": "website-foyr-test",
+	"compatibility_date": "2025-09-27",
+	"compatibility_flags": [
+		"global_fetch_strictly_public",
+		"nodejs_compat"
+	],
 	"assets": {
-		"directory": "./dist",
-		"binding": "ASSETS"
+		"binding": "ASSETS",
+		"directory": "dist"
 	},
 	"observability": {
 		"enabled": true
 	},
-	"upload_source_maps": true
+	"$schema": "node_modules/wrangler/config-schema.json"
 }
