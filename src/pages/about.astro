@@ -1,22 +1,23 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/home/Navbar.astro';
-import AboutHero from '../components/about/AboutHero.astro';
-import StatsRibbon from '../components/about/StatsRibbon.astro';
-import PhilosophyHistory from '../components/about/PhilosophyHistory.astro';
-import TeamSection from '../components/about/TeamSection.astro';
-import AboutCTA from '../components/about/AboutCTA.astro';
+import Founder from '../components/about/AboutHero.astro';
+import Story from '../components/about/PhilosophyHistory.astro';
+import Achievements from '../components/about/TeamSection.astro';
+import Credentials from '../components/about/Credentials.astro';
 import Footer from '../components/shared/Footer.astro';
 ---
 
-<Layout title="About Us | Studio Alpha Architecture">
+<Layout
+  title="About | Design Sense — Ar. Anchal Garg, Architecture Consultancy Delhi NCR"
+  description="Learn about Design Sense, founded by Ar. Anchal Garg (IP University Delhi). 150+ projects, 8+ years, BNI Member. Architecture & Interior Design in Delhi & NCR."
+>
   <Navbar />
   <main>
-    <AboutHero />
-    <StatsRibbon />
-    <PhilosophyHistory />
-    <TeamSection />
-    <AboutCTA />
+    <Founder />
+    <Story />
+    <Achievements />
+    <Credentials />
   </main>
   <Footer />
 </Layout>

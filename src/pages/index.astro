@@ -2,17 +2,30 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/home/Navbar.astro';
 import Hero from '../components/home/Hero.astro';
-import SelectedWorks from '../components/home/SelectedWorks.astro';
-import Approach from '../components/home/Approach.astro';
+import ValueProp from '../components/home/ValueProp.astro';
+import Stats from '../components/home/Stats.astro';
+import Process from '../components/home/Process.astro';
+import FeaturedProjects from '../components/home/FeaturedProjects.astro';
+import BeforeAfter from '../components/home/BeforeAfter.astro';
+import Testimonials from '../components/home/Testimonials.astro';
+import CTABand from '../components/home/CTABand.astro';
 import Footer from '../components/shared/Footer.astro';
 ---
 
-<Layout title="ARCHITECTS | Form & Function">
+<Layout
+  title="Design Sense | Architecture & Interior Design Consultancy — Delhi & NCR"
+  description="Design Sense by Ar. Anchal Garg — 150+ delivered projects, architecture and interior design consultancy in Delhi & NCR. Saving client's money, time & stress."
+>
   <Navbar />
   <main>
     <Hero />
-    <SelectedWorks />
-    <Approach />
+    <ValueProp />
+    <Stats />
+    <Process />
+    <FeaturedProjects />
+    <BeforeAfter />
+    <Testimonials />
+    <CTABand />
   </main>
   <Footer />
 </Layout>

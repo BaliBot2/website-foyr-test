@@ -1,6 +1,6 @@
 {
-	"name": "website-foyr-test",
-	"description": "3D Interior Design Portfolio — built with Astro + TailwindCSS on Cloudflare.",
+	"name": "design-sense-website",
+	"description": "Design Sense — Architecture and Interior Design Consultancy, Delhi & NCR. Built with Astro + Tailwind v4 on Cloudflare Workers.",
 	"cloudflare": {
 		"label": "Astro Framework Starter",
 		"products": [

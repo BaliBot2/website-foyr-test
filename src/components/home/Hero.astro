@@ -1,43 +1,97 @@
 ---
 import Button from '../shared/Button.astro';
-import Icon from '../shared/Icon.astro';
-import { Image } from 'astro:assets';
-import heroImage from '../../assets/img/home-page-img-01.jpg';
 ---
 
-<section class="relative h-screen w-full flex items-center justify-center overflow-hidden pt-20">
-  <!-- Background Image with Overlay -->
-  <div class="absolute inset-0 z-0">
-    <div class="absolute inset-0 bg-black/40 z-10" />
-    <Image
-      src={heroImage}
-      alt="Minimalist concrete skyscraper reaching towards a clear sky"
-      class="w-full h-full object-cover"
-      loading="eager"
-      fetchpriority="high"
-      widths={[640, 1024, 1280, 1600]}
-      sizes="100vw"
-      quality={75}
-      format="webp"
-    />
+<section
+  id="hero"
+  class="relative min-h-screen w-full flex items-center justify-center overflow-hidden pt-20"
+  style="background-color: var(--color-primary);"
+>
+  <!-- Subtle texture overlay -->
+  <div class="absolute inset-0 opacity-10" style="background-image: url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23F0D5B8' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\");" />
+
+  <!-- Decorative arch motif -->
+  <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] opacity-10 pointer-events-none">
+    <div class="w-full h-full border-t-[80px] border-l-[80px] border-r-[80px] border-primary-contrast rounded-t-full" style="border-color: var(--color-primary-contrast);" />
   </div>
 
   <!-- Content -->
-  <div class="relative z-20 text-center px-6">
-    <h1 class="text-white text-6xl md:text-9xl font-black leading-none tracking-tight mb-6 uppercase">
-      Form &<br />Function
+  <div class="relative z-10 text-center px-6 max-w-5xl mx-auto">
+    <!-- Label -->
+    <span
+      class="inline-block text-xs uppercase tracking-[0.4em] font-sans font-semibold mb-8 px-4 py-2 rounded-full border"
+      style="color: var(--color-primary-contrast); border-color: color-mix(in srgb, var(--color-primary-contrast) 30%, transparent);"
+    >
+      Delhi &amp; NCR · Architecture · Interiors
+    </span>
+
+    <!-- Main headline -->
+    <h1
+      class="font-display font-black leading-none tracking-tight mb-6 uppercase"
+      style="color: var(--color-primary-contrast); font-size: clamp(3rem, 10vw, 8rem);"
+    >
+      Design<br />Sense
     </h1>
-    <p class="text-white/90 text-lg md:text-xl font-light max-w-2xl mx-auto mb-10 tracking-wide uppercase">
-      Defining modern spaces through precision and soul
+
+    <!-- Subheading -->
+    <p
+      class="font-sans font-light text-lg md:text-2xl max-w-2xl mx-auto mb-4 leading-relaxed"
+      style="color: color-mix(in srgb, var(--color-primary-contrast) 80%, transparent);"
+    >
+      Architecture and Interior Design Consultancy Service
     </p>
-    <div class="flex flex-col md:flex-row gap-4 justify-center items-center">
-      <Button href="/projects" variant="primary" size="lg">View Portfolio</Button>
-      <Button href="/about" variant="secondary" size="lg">Our Story</Button>
+
+    <!-- Value prop tagline -->
+    <p
+      class="font-sans text-sm uppercase tracking-[0.25em] mb-12"
+      style="color: color-mix(in srgb, var(--color-primary-contrast) 60%, transparent);"
+    >
+      Saving Client's Money · Time · Stress
+    </p>
+
+    <!-- CTAs -->
+    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+      <a
+        href="/contact"
+        id="hero-cta-primary"
+        class="inline-flex items-center gap-2 font-bold uppercase tracking-widest rounded px-8 py-4 text-sm transition-all duration-200 hover:scale-105"
+        style="background-color: var(--color-primary-contrast); color: var(--color-primary);"
+      >
+        Request a Free Consultation
+      </a>
+      <a
+        href="/projects"
+        id="hero-cta-secondary"
+        class="inline-flex items-center gap-2 font-bold uppercase tracking-widest rounded px-8 py-4 text-sm border-2 transition-all duration-200 hover:scale-105"
+        style="border-color: color-mix(in srgb, var(--color-primary-contrast) 60%, transparent); color: var(--color-primary-contrast);"
+      >
+        View Our Work
+      </a>
+    </div>
+
+    <!-- Stats teaser -->
+    <div
+      class="flex flex-wrap justify-center gap-8 mt-16 pt-12 border-t"
+      style="border-color: color-mix(in srgb, var(--color-primary-contrast) 20%, transparent);"
+    >
+      {[
+        { num: '150+', label: 'Projects Delivered' },
+        { num: '5+', label: 'Years Experience' },
+        { num: 'Pan India', label: 'Project Reach' },
+        { num: 'Delhi NCR', label: 'Primary Service Area' },
+      ].map(({ num, label }) => (
+        <div class="text-center">
+          <div class="font-display font-black text-2xl md:text-3xl" style="color: var(--color-primary-contrast);">{num}</div>
+          <div class="font-sans text-xs uppercase tracking-widest mt-1" style="color: color-mix(in srgb, var(--color-primary-contrast) 60%, transparent);">{label}</div>
+        </div>
+      ))}
     </div>
   </div>
 
-  <!-- Scroll Indicator -->
-  <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 animate-bounce">
-    <Icon name="chevron-down" size={32} class="text-white" />
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-bounce">
+    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: color-mix(in srgb, var(--color-primary-contrast) 50%, transparent);">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+    </svg>
   </div>
 </section>

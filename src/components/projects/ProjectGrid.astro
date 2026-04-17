@@ -1,76 +1,82 @@
 ---
-import Container from '../shared/Container.astro';
-import ProjectCard from './ProjectCard.astro';
-import project1Image from '../../assets/img/projects-page-img-01.jpg';
-import project2Image from '../../assets/img/projects-page-img-02.jpg';
-import project3Image from '../../assets/img/projects-page-img-03.jpg';
-import project4Image from '../../assets/img/projects-page-img-04.jpg';
-import project5Image from '../../assets/img/projects-page-img-05.jpg';
-import project6Image from '../../assets/img/projects-page-img-06.jpg';
+// ProjectGrid — 10 projects from data/projects.ts with filter support
+import { projects } from '../../data/projects';
 
-const projects = [
-  {
-    title: "Skyline Residence",
-    category: "Residential",
-    location: "Zurich, Switzerland",
-    year: "2023",
-    image: project1Image,  // This is the imported ImageMetadata object
-    alt: "Modern minimalist luxury villa with large glass windows"
-  },
-  {
-    title: "Metropolitan Plaza",
-    category: "Commercial",
-    location: "New York, USA",
-    year: "2022",
-    image: project2Image,
-    alt: "High-rise glass office building in metropolitan area"
-  },
-  {
-    title: "The Glass Pavilion",
-    category: "Cultural",
-    location: "Oslo, Norway",
-    year: "2023",
-    image: project3Image,
-    alt: "Abstract geometrical white architectural facade with shadows"
-  },
-  {
-    title: "Riverside Lofts",
-    category: "Residential",
-    location: "London, UK",
-    year: "2021",
-    image: project4Image,
-    alt: "Industrial chic loft apartment interior with brick walls"
-  },
-  {
-    title: "Nordic Cultural Center",
-    category: "Cultural",
-    location: "Stockholm, Sweden",
-    year: "2022",
-    image: project5Image,
-    alt: "Modern concrete library building with sharp angles"
-  },
-  {
-    title: "Desert Oasis Villa",
-    category: "Residential",
-    location: "Dubai, UAE",
-    year: "2023",
-    image: project6Image,
-    alt: "Modern villa with swimming pool at sunset"
-  }
-];
+const gradients: Record<string, string> = {
+  'Residential': 'linear-gradient(135deg, #8B3A0F 0%, #5C2408 100%)',
+  'Commercial':  'linear-gradient(135deg, #4A3728 0%, #2A1F16 100%)',
+  'Farmhouse':   'linear-gradient(135deg, #6B2D0A 0%, #3D1805 100%)',
+  'Apartment':   'linear-gradient(135deg, #A04515 0%, #6B2D0A 100%)',
+  'Duplex':      'linear-gradient(135deg, #7A3010 0%, #4A1E08 100%)',
+};
 ---
 
-<Container>
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    {projects.map((project) => (
-      <ProjectCard
-        title={project.title}
-        category={project.category}
-        location={project.location}
-        year={project.year}
-        image={project.image}  // Passing the ImageMetadata object
-        alt={project.alt}
-      />
-    ))}
-  </div>
-</Container>
+<div id="project-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+  {projects.map((project) => (
+    <article
+      class="group cursor-pointer"
+      data-project-type={project.type.toLowerCase()}
+      data-project-slug={project.slug}
+      id={`project-${project.slug}`}
+      onclick={`document.getElementById('modal-${project.slug}')?.classList.add('open')`}
+    >
+      <!-- Image placeholder -->
+      <div
+        class="relative overflow-hidden rounded-lg mb-4 aspect-[4/3]"
+        style={`background: ${gradients[project.type] ?? gradients['Residential']};`}
+      >
+        <!-- DS watermark -->
+        <div
+          class="absolute inset-0 flex items-center justify-center font-display font-black uppercase opacity-10"
+          style="font-size: 5rem; color: var(--color-primary-contrast);"
+        >
+          DS
+        </div>
+        <!-- Type badge -->
+        <div class="absolute top-4 left-4 z-10">
+          <span
+            class="text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full font-display"
+            style="background-color: color-mix(in srgb, var(--color-primary-contrast) 90%, transparent); color: var(--color-primary);"
+          >
+            {project.type}
+          </span>
+        </div>
+        <!-- Hover overlay -->
+        <div
+          class="absolute inset-0 flex items-end p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
+          style="background: linear-gradient(to top, rgba(26,16,8,0.85) 0%, transparent 60%);"
+        >
+          <span class="font-sans text-xs font-bold uppercase tracking-widest" style="color: var(--color-primary-contrast);">
+            View Details →
+          </span>
+        </div>
+        <!-- Scale on hover (pseudo layer) -->
+        <div
+          class="absolute inset-0 transition-transform duration-700 group-hover:scale-105"
+          style={`background: ${gradients[project.type] ?? gradients['Residential']}; z-index: 0;`}
+        />
+      </div>
+
+      <!-- Info -->
+      <div class="flex justify-between items-start gap-4">
+        <div>
+          <h3 class="font-display font-black text-base uppercase text-stone-900 dark:text-stone-100 group-hover:text-primary transition-colors duration-200">
+            {project.name}
+          </h3>
+          <p class="font-sans text-sm text-stone-500 dark:text-stone-400 mt-1 flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+            {project.location}
+          </p>
+        </div>
+        {project.sqft && (
+          <span class="font-sans text-xs text-stone-400 whitespace-nowrap font-medium shrink-0">
+            {project.sqft.toLocaleString()} sq.ft.
+          </span>
+        )}
+      </div>
+    </article>
+  ))}
+</div>

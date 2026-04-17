@@ -1,23 +1,55 @@
 ---
-import { Image } from 'astro:assets';
-import mapImage from '../../assets/img/contact-page-img-01.png';
+// ServiceArea — static Delhi & NCR service area block
 ---
 
-<div class="relative group overflow-hidden rounded border border-slate-200 dark:border-slate-800 h-80 lg:h-96">
-  <div class="absolute inset-0 bg-slate-200 dark:bg-slate-800">
-    <Image
-  src={mapImage}
-  alt="Minimalist grayscale map of New York City showing studio location"
-  class="w-full h-full object-cover grayscale opacity-50 contrast-125"
-  loading="lazy"
-  decoding="async"
-  layout="full-width"
-  format="webp"
-  fit="cover"
-  widths={[640, 1024, 1280]}
-  sizes="(max-width: 1024px) 100vw, 50vw"
-  quality={70}
-/>
-    <div class="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-all duration-500" />
+<div class="space-y-5">
+  <!-- Header -->
+  <div>
+    <h2 class="font-display font-black uppercase text-stone-900 dark:text-stone-100 text-xl mb-2">
+      Service Area
+    </h2>
+    <p class="font-sans text-stone-500 dark:text-stone-400 text-sm">
+      We primarily serve Delhi & NCR, with select projects delivered pan India.
+    </p>
+  </div>
+
+  <!-- Map placeholder -->
+  <div
+    class="w-full rounded-lg overflow-hidden aspect-video relative"
+    style="background: linear-gradient(160deg, #FAF6F1 0%, #E8DDD5 100%); border: 1px solid color-mix(in srgb, var(--color-primary) 15%, transparent);"
+  >
+    <!-- Simple Delhi NCR map representation -->
+    <div class="absolute inset-0 flex flex-col items-center justify-center gap-4">
+      <div class="text-4xl">🗺</div>
+      <div class="text-center">
+        <p class="font-display font-black text-lg uppercase text-primary">Delhi &amp; NCR</p>
+        <p class="font-sans text-sm text-stone-500">Our Primary Service Region</p>
+      </div>
+      <!-- Region markers -->
+      <div class="flex flex-wrap justify-center gap-2 mt-2">
+        {['Delhi', 'Gurgaon', 'Noida', 'Faridabad', 'Rewari', 'Ghaziabad'].map((area) => (
+          <span
+            class="font-sans text-xs px-3 py-1 rounded-full font-semibold"
+            style="background-color: color-mix(in srgb, var(--color-primary) 10%, transparent); color: var(--color-primary);"
+          >
+            {area}
+          </span>
+        ))}
+      </div>
+    </div>
+    <div class="absolute bottom-3 right-3 opacity-40">
+      <p class="font-sans text-[10px] uppercase tracking-wider text-stone-500">Replace with Google Maps embed</p>
+    </div>
+  </div>
+
+  <!-- Pan India note -->
+  <div
+    class="p-4 rounded-lg border font-sans text-sm text-stone-600 dark:text-stone-400 flex items-start gap-3"
+    style="border-color: color-mix(in srgb, var(--color-primary) 15%, transparent); background-color: color-mix(in srgb, var(--color-primary) 4%, transparent);"
+  >
+    <span class="text-lg shrink-0 mt-0.5">✈</span>
+    <div>
+      <strong class="text-stone-800 dark:text-stone-200 font-semibold">Pan India Projects:</strong> While our primary focus is Delhi NCR, Design Sense has delivered 150+ projects across India. Contact us to discuss your project location.
+    </div>
   </div>
 </div>

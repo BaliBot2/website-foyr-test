@@ -2,11 +2,18 @@
 
 /* Custom theme configuration */
 @theme {
-  /* Colors */
-  --color-primary: #1754cf;
-  --color-background-light: #f6f6f8;
-  --color-background-dark: #111621;
-  
+  /* === Design Sense Brand Colors === */
+  --color-primary: #8B3A0F;            /* rust terracotta */
+  --color-primary-light: #B04F18;      /* hover rust */
+  --color-primary-contrast: #F0D5B8;   /* cream */
+  --color-background-light: #FAF6F1;   /* warm off-white */
+  --color-background-dark: #1A1008;    /* warm near-black */
+  --color-accent: #1A1A1A;             /* divider lines */
+
+  /* === Typography === */
+  --font-display: 'Archivo Black', 'Inter', sans-serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
   /* Border radius */
   --radius-default: 0.125rem;
   --radius-lg: 0.25rem;
@@ -20,7 +27,7 @@
 /* Base styles */
 @layer base {
   * {
-    @apply border-slate-100 dark:border-slate-800;
+    @apply border-stone-200 dark:border-stone-800;
   }
   
   html {
@@ -28,7 +35,12 @@
   }
   
   body {
-    @apply bg-background-light text-slate-900 dark:bg-background-dark dark:text-slate-100 transition-colors duration-300 antialiased;
+    @apply bg-background-light text-stone-900 dark:bg-background-dark dark:text-stone-100 transition-colors duration-300 antialiased;
+    font-family: var(--font-sans);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
   }
 }
 
@@ -36,6 +48,14 @@
 .antialiased {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Font utilities */
+.font-display {
+  font-family: var(--font-display);
+}
+.font-sans {
+  font-family: var(--font-sans);
 }
 
 /* Layout utilities */
@@ -107,12 +127,14 @@
   transform: scale(1.05);
 }
 
-/* Button hover states */
+/* Button hover states — routed through tokens */
 .hover\:bg-primary:hover {
   background-color: var(--color-primary);
 }
 
-/* Add these to your existing global.css */
+.hover\:bg-primary-light:hover {
+  background-color: var(--color-primary-light);
+}
 
 /* Form elements */
 .bg-white\/10 {
@@ -171,28 +193,64 @@
   white-space: nowrap;
 }
 
-/* Add these to your existing global.css */
-
 /* Legal content styling */
 .legal-content h2 {
-  @apply text-slate-900 dark:text-slate-100 text-2xl font-bold mt-12 mb-4;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  color: #1A1008;
+}
+
+.dark .legal-content h2 {
+  color: #FAF6F1;
 }
 
 .legal-content h3 {
-  @apply text-slate-900 dark:text-slate-100 text-lg font-semibold mt-8 mb-3;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  color: #1A1008;
+}
+
+.dark .legal-content h3 {
+  color: #FAF6F1;
 }
 
 .legal-content p {
-  @apply text-slate-600 dark:text-slate-400 text-base leading-relaxed mb-4;
+  margin-bottom: 1.25rem;
+  line-height: 1.75;
+  color: #4a3728;
+}
+
+.dark .legal-content p {
+  color: #d4bfb0;
 }
 
 .legal-content ul {
-  @apply list-disc pl-6 mb-4 text-slate-600 dark:text-slate-400 space-y-2;
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1.25rem;
+  color: #4a3728;
+}
+
+.dark .legal-content ul {
+  color: #d4bfb0;
+}
+
+.legal-content li {
+  margin-bottom: 0.5rem;
 }
 
 /* List styles */
 .list-disc {
   list-style-type: disc;
+}
+
+.list-none {
+  list-style-type: none;
+  padding-left: 0;
 }
 
 .pl-6 {
@@ -211,12 +269,20 @@
 /* Sticky positioning */
 .sticky {
   position: sticky;
-  top: 7rem; /* 28 = 7rem (accounts for navbar height) */
+  top: 7rem;
 }
 
 /* Rounded utilities */
 .rounded-lg {
   border-radius: 0.5rem;
+}
+
+.rounded-2xl {
+  border-radius: 1rem;
+}
+
+.rounded-full {
+  border-radius: 9999px;
 }
 
 /* Size utilities */
@@ -228,64 +294,6 @@
 /* Active scale */
 .active\:scale-95:active {
   transform: scale(0.95);
-}
-
-/* Shadow utilities */
-.shadow-xl {
-  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-}
-
-/* Legal content styling for privacy page */
-.legal-content h2 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-top: 2.5rem;
-  margin-bottom: 1rem;
-  color: #0f172a;
-}
-
-.dark .legal-content h2 {
-  color: #f1f5f9;
-}
-
-.legal-content p {
-  margin-bottom: 1.25rem;
-  line-height: 1.75;
-  color: #334155;
-}
-
-.dark .legal-content p {
-  color: #cbd5e1;
-}
-
-.legal-content ul {
-  list-style-type: disc;
-  padding-left: 1.5rem;
-  margin-bottom: 1.25rem;
-  color: #334155;
-}
-
-.dark .legal-content ul {
-  color: #cbd5e1;
-}
-
-.legal-content li {
-  margin-bottom: 0.5rem;
-}
-
-/* List none utility */
-.list-none {
-  list-style-type: none;
-  padding-left: 0;
-}
-
-/* Rounded utilities */
-.rounded-2xl {
-  border-radius: 1rem;
-}
-
-.rounded-full {
-  border-radius: 9999px;
 }
 
 /* Spacing utilities */
@@ -302,6 +310,10 @@
   background-color: color-mix(in srgb, var(--color-primary) 10%, transparent);
 }
 
+.bg-primary\/20 {
+  background-color: color-mix(in srgb, var(--color-primary) 20%, transparent);
+}
+
 /* Border utilities */
 .border-primary\/10 {
   border-color: color-mix(in srgb, var(--color-primary) 10%, transparent);
@@ -316,6 +328,64 @@
   transform: scale(1.1);
 }
 
-.active\:scale-95:active {
-  transform: scale(0.95);
+/* DS Placeholder image block */
+.ds-placeholder {
+  background: linear-gradient(135deg, var(--color-primary) 0%, color-mix(in srgb, var(--color-primary) 60%, #000) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ds-placeholder-light {
+  background: linear-gradient(135deg, var(--color-primary-contrast) 0%, color-mix(in srgb, var(--color-primary-contrast) 70%, #888) 100%);
+}
+
+/* Star rating */
+.star-filled {
+  color: #F59E0B;
+}
+
+/* Filter pill active state */
+.filter-pill {
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.filter-pill.active {
+  background-color: var(--color-primary);
+  color: var(--color-primary-contrast);
+  border-color: var(--color-primary);
+}
+
+/* Modal overlay */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 16, 8, 0.85);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Mobile menu */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  background: var(--color-background-dark);
+  z-index: 90;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-menu.open {
+  transform: translateX(0);
 }

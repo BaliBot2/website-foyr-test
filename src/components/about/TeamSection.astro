@@ -1,65 +1,77 @@
 ---
-import Container from '../shared/Container.astro';
-import Icon from '../shared/Icon.astro';
-import TeamMember from './TeamMember.astro';
-import team1Image from '../../assets/img/about-page-img-01.jpg';
-import team2Image from '../../assets/img/about-page-img-02.jpg';
-import team3Image from '../../assets/img/about-page-img-03.jpg';
-import team4Image from '../../assets/img/about-page-img-04.jpg';
+// Achievements — About § 3: 3-col photo grid
 
-const team = [
+const achievements = [
   {
-    name: "Marcus Vane",
-    role: "Principal Architect",
-    image: team1Image,
-    alt: "Professional portrait of male principal architect with glasses and suit"
+    id: 'design-award',
+    title: 'Industry Recognition',
+    caption: 'Design Award Recipient — Architecture & Interiors',
+    note: 'PDF P.4 — Award name to be confirmed by client',
+    gradient: 'linear-gradient(135deg, #8B3A0F 0%, #5C2408 100%)',
   },
   {
-    name: "Elena Rossi",
-    role: "Lead Interior Designer",
-    image: team2Image,
-    alt: "Professional portrait of female lead interior designer with modern attire"
+    id: 'colston-collab',
+    title: 'Brand Collaboration',
+    caption: 'Design Shoot with Colston Bathrooms — @colston_bathrooms',
+    note: 'PDF P.4 — Collaboration photoshoot',
+    gradient: 'linear-gradient(135deg, #6B2D0A 0%, #3D1805 100%)',
   },
   {
-    name: "David Chen",
-    role: "Structural Director",
-    image: team3Image,
-    alt: "Professional portrait of male structural engineer in casual professional wear"
+    id: 'ace-jury',
+    title: 'Jury Member',
+    caption: 'ACE Architecture Awards — Jury Panel',
+    note: 'PDF P.4 — ACE Architecture event',
+    gradient: 'linear-gradient(135deg, #A04515 0%, #6B2D0A 100%)',
   },
-  {
-    name: "Sarah Jenkins",
-    role: "Sustainability Expert",
-    image: team4Image,
-    alt: "Professional portrait of female sustainability expert with warm smile"
-  }
 ];
 ---
 
-<section class="py-24 bg-white dark:bg-slate-900/30">
-  <Container>
-    <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-      <div class="max-w-xl">
-        <div class="flex items-center gap-4 mb-4">
-          <div class="h-[1px] w-12 bg-primary" />
-          <h2 class="text-sm font-bold uppercase tracking-[0.3em] text-primary">The Team</h2>
-        </div>
-        <h3 class="text-4xl font-black">The Minds Behind Alpha</h3>
+<section id="achievements" class="py-24 bg-background-light dark:bg-background-dark">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <!-- Header -->
+    <div class="text-center mb-14">
+      <div class="flex items-center gap-4 justify-center mb-4">
+        <div class="h-px w-12 bg-primary" />
+        <span class="text-xs font-bold uppercase tracking-[0.3em] text-primary font-display">Recognition</span>
+        <div class="h-px w-12 bg-primary" />
       </div>
-      <a href="/careers" class="group flex items-center gap-2 text-primary font-bold text-sm hover:gap-3 transition-all">
-        Join Our Team 
-        <Icon name="arrow-narrow-right" size={20} class="transition-transform group-hover:translate-x-1" />
-      </a>
+      <h2 class="font-display font-black uppercase text-stone-900 dark:text-stone-100 leading-tight" style="font-size: clamp(2rem, 4vw, 3rem);">
+        Achievements &amp; Milestones
+      </h2>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-      {team.map((member) => (
-        <TeamMember
-          name={member.name}
-          role={member.role}
-          image={member.image}
-          alt={member.alt}
-        />
+    <!-- Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {achievements.map(({ id, title, caption, note, gradient }) => (
+        <figure class="group" id={`achievement-${id}`}>
+          <!-- Image placeholder -->
+          <div
+            class="relative rounded-lg overflow-hidden aspect-square mb-4"
+            style={`background: ${gradient};`}
+          >
+            <!-- Initial -->
+            <div
+              class="absolute inset-0 flex items-center justify-center font-display font-black uppercase opacity-10"
+              style="font-size: 7rem; color: var(--color-primary-contrast);"
+            >
+              ★
+            </div>
+            <!-- Hover overlay -->
+            <div
+              class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5"
+              style="background: linear-gradient(to top, rgba(26,16,8,0.8) 0%, transparent 60%);"
+            >
+              <p class="font-sans text-[10px] uppercase tracking-widest" style="color: color-mix(in srgb, var(--color-primary-contrast) 50%, transparent);">{note}</p>
+            </div>
+          </div>
+          <!-- Caption -->
+          <figcaption class="space-y-1">
+            <p class="font-display font-black text-sm uppercase tracking-wide text-stone-900 dark:text-stone-100">{title}</p>
+            <p class="font-sans text-sm text-stone-600 dark:text-stone-400">{caption}</p>
+          </figcaption>
+        </figure>
       ))}
     </div>
-  </Container>
+  </div>
 </section>
