@@ -13,28 +13,21 @@
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
 
-      <!-- Portrait placeholder -->
+      <!-- Portrait -->
       <div class="lg:col-span-4">
-        <div
-          class="relative rounded-lg overflow-hidden aspect-[3/4] max-w-xs mx-auto lg:mx-0"
-          style="background: linear-gradient(160deg, var(--color-primary) 0%, #5C2408 100%);"
-        >
-          <!-- Decorative arch -->
-          <div
-            class="absolute bottom-0 left-1/2 -translate-x-1/2 w-40 h-20 border-t-[30px] border-l-[30px] border-r-[30px] border-primary-contrast rounded-t-full opacity-10"
-            style="border-color: var(--color-primary-contrast);"
+        <div class="relative rounded-lg overflow-hidden aspect-[3/4] max-w-xs mx-auto lg:mx-0 shadow-2xl">
+          <img
+            src="/images/about/anchal-garg-portrait.jpg"
+            alt="Ar. Anchal Garg — Founder, Design Sense Architects"
+            class="absolute inset-0 w-full h-full object-cover object-top"
+            loading="eager"
+            decoding="async"
           />
-          <!-- Name watermark -->
+          <!-- Subtle rust overlay strip at bottom -->
           <div
-            class="absolute inset-0 flex items-center justify-center font-display font-black uppercase opacity-10 text-center leading-none"
-            style="font-size: 5rem; color: var(--color-primary-contrast);"
-          >
-            AG
-          </div>
-          <!-- Photo placeholder label -->
-          <div class="absolute bottom-0 left-0 right-0 p-4 text-center" style="background: linear-gradient(to top, rgba(26,16,8,0.8) 0%, transparent 100%);">
-            <p class="font-sans text-[10px] uppercase tracking-widest" style="color: color-mix(in srgb, var(--color-primary-contrast) 50%, transparent);">Portrait Photo — See PDF P.3</p>
-          </div>
+            class="absolute bottom-0 left-0 right-0 h-16"
+            style="background: linear-gradient(to top, rgba(139,58,15,0.7) 0%, transparent 100%);"
+          />
         </div>
       </div>
 

@@ -5,10 +5,22 @@ import Button from '../shared/Button.astro';
 <section
   id="hero"
   class="relative min-h-screen w-full flex items-center justify-center overflow-hidden pt-20"
-  style="background-color: var(--color-primary);"
 >
-  <!-- Subtle texture overlay -->
-  <div class="absolute inset-0 opacity-10" style="background-image: url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23F0D5B8' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\");" />
+  <!-- Full-bleed hero background image -->
+  <img
+    src="/images/projects/begwani-residence-1.jpg"
+    alt=""
+    aria-hidden="true"
+    class="absolute inset-0 w-full h-full object-cover"
+    loading="eager"
+    decoding="async"
+    fetchpriority="high"
+  />
+  <!-- Rust tint overlay — keeps brand color while showing the photo -->
+  <div class="absolute inset-0" style="background: linear-gradient(160deg, rgba(139,58,15,0.82) 0%, rgba(26,16,8,0.75) 100%);"></div>
+
+  <!-- Subtle cross-hatch texture on top -->
+  <div class="absolute inset-0 opacity-5" style="background-image: url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23F0D5B8' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\");"></div>
 
   <!-- Decorative arch motif -->
   <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] opacity-10 pointer-events-none">

@@ -17,17 +17,16 @@ import { projects } from '../../data/projects';
       style="background-color: var(--color-background-light); max-height: 90vh; overflow-y: auto;"
       onclick="event.stopPropagation()"
     >
-      <!-- Image placeholder -->
-      <div
-        class="w-full aspect-video"
-        style={`background: linear-gradient(135deg, var(--color-primary) 0%, #5C2408 100%);`}
-      >
-        <div
-          class="w-full h-full flex items-center justify-center font-display font-black uppercase opacity-10"
-          style="font-size: 6rem; color: var(--color-primary-contrast);"
-        >
-          DS
-        </div>
+      <!-- Image -->
+      <div class="w-full aspect-video relative bg-stone-200 dark:bg-stone-800">
+        <img
+          src={project.cover}
+          alt={project.alt}
+          class="absolute inset-0 w-full h-full object-cover"
+          loading="lazy"
+          decoding="async"
+        />
+        <!-- Optional gradient overlay if text readability was needed, but here it's just decorative -->
       </div>
 
       <!-- Content -->
@@ -75,10 +74,6 @@ import { projects } from '../../data/projects';
               <dd class="font-sans text-sm text-stone-800">{project.sqft.toLocaleString()} sq.ft.</dd>
             </div>
           )}
-          <div class="bg-stone-100 rounded p-3">
-            <dt class="font-display font-black text-[10px] uppercase tracking-widest text-primary mb-1">PDF Ref</dt>
-            <dd class="font-sans text-sm text-stone-800">P.{project.pageRefs.join(', P.')}</dd>
-          </div>
         </dl>
 
         <!-- Description -->

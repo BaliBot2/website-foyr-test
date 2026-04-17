@@ -1,14 +1,6 @@
 ---
-// ProjectGrid — 10 projects from data/projects.ts with filter support
+// ProjectGrid — 10 projects from data/projects.ts with real images and filter support
 import { projects } from '../../data/projects';
-
-const gradients: Record<string, string> = {
-  'Residential': 'linear-gradient(135deg, #8B3A0F 0%, #5C2408 100%)',
-  'Commercial':  'linear-gradient(135deg, #4A3728 0%, #2A1F16 100%)',
-  'Farmhouse':   'linear-gradient(135deg, #6B2D0A 0%, #3D1805 100%)',
-  'Apartment':   'linear-gradient(135deg, #A04515 0%, #6B2D0A 100%)',
-  'Duplex':      'linear-gradient(135deg, #7A3010 0%, #4A1E08 100%)',
-};
 ---
 
 <div id="project-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -20,23 +12,20 @@ const gradients: Record<string, string> = {
       id={`project-${project.slug}`}
       onclick={`document.getElementById('modal-${project.slug}')?.classList.add('open')`}
     >
-      <!-- Image placeholder -->
-      <div
-        class="relative overflow-hidden rounded-lg mb-4 aspect-[4/3]"
-        style={`background: ${gradients[project.type] ?? gradients['Residential']};`}
-      >
-        <!-- DS watermark -->
-        <div
-          class="absolute inset-0 flex items-center justify-center font-display font-black uppercase opacity-10"
-          style="font-size: 5rem; color: var(--color-primary-contrast);"
-        >
-          DS
-        </div>
+      <!-- Image -->
+      <div class="relative overflow-hidden rounded-lg mb-4 aspect-[4/3] bg-stone-200 dark:bg-stone-800">
+        <img
+          src={project.cover}
+          alt={project.alt}
+          class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          loading="lazy"
+          decoding="async"
+        />
         <!-- Type badge -->
         <div class="absolute top-4 left-4 z-10">
           <span
             class="text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full font-display"
-            style="background-color: color-mix(in srgb, var(--color-primary-contrast) 90%, transparent); color: var(--color-primary);"
+            style="background-color: color-mix(in srgb, var(--color-primary-contrast) 92%, transparent); color: var(--color-primary);"
           >
             {project.type}
           </span>
@@ -50,11 +39,6 @@ const gradients: Record<string, string> = {
             View Details →
           </span>
         </div>
-        <!-- Scale on hover (pseudo layer) -->
-        <div
-          class="absolute inset-0 transition-transform duration-700 group-hover:scale-105"
-          style={`background: ${gradients[project.type] ?? gradients['Residential']}; z-index: 0;`}
-        />
       </div>
 
       <!-- Info -->

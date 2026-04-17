@@ -6,11 +6,11 @@ export interface Project {
   location: string;
   sqft?: number;
   type: ProjectType;
-  cover: string; // path relative to /public or placeholder keyword
+  cover: string; // path relative to /public served as static asset
+  images?: string[]; // additional gallery images
   alt: string;
   description?: string;
   featured?: boolean;
-  pageRefs: number[];
 }
 
 export const projects: Project[] = [
@@ -20,11 +20,15 @@ export const projects: Project[] = [
     location: 'Model Town, Delhi',
     sqft: 8000,
     type: 'Duplex',
-    cover: 'placeholder',
+    cover: '/images/projects/begwani-residence-1.jpg',
+    images: [
+      '/images/projects/begwani-residence-2.jpg',
+      '/images/projects/begwani-residence-3.jpg',
+      '/images/projects/begwani-residence-4.jpg',
+    ],
     alt: 'Begwani Residence — 8000 sq ft duplex in Model Town, featuring spiral staircase foyer',
     description: 'An 8,000 sq.ft. duplex residence in Model Town featuring a dramatic spiral staircase foyer, multi-room showcase with marble floors and custom millwork throughout.',
     featured: true,
-    pageRefs: [11, 12, 13, 14, 15],
   },
   {
     slug: 'pioneer-araya',
@@ -32,11 +36,11 @@ export const projects: Project[] = [
     location: 'Gurgaon, Haryana',
     sqft: 5600,
     type: 'Apartment',
-    cover: 'placeholder',
+    cover: '/images/projects/pioneer-araya-1.jpg',
+    images: ['/images/projects/pioneer-araya-2.jpg'],
     alt: 'Pioneer Araya — 5600 sq ft apartment in Gurgaon with dramatic ceilings and marble floors',
     description: 'A 5,600 sq.ft. luxury apartment in Gurgaon featuring dramatic double-height ceilings, Calacatta marble floors, and bespoke furniture.',
     featured: true,
-    pageRefs: [9, 10],
   },
   {
     slug: 'nimesh-arora-residence',
@@ -44,11 +48,11 @@ export const projects: Project[] = [
     location: 'Delhi',
     sqft: undefined,
     type: 'Residential',
-    cover: 'placeholder',
+    cover: '/images/projects/nimesh-arora-1.jpg',
+    images: ['/images/projects/nimesh-arora-2.jpg'],
     alt: 'Nimesh Arora Residence — 450 yard property in Delhi',
-    description: 'A 450-yard residence in Delhi featuring contemporary interiors with natural wood accents and curated lighting design.',
+    description: 'A 450-yard residence in Delhi featuring contemporary interiors with natural wood accents, fluted panelling, and curated lighting design.',
     featured: true,
-    pageRefs: [32],
   },
   {
     slug: 'dr-gautam-yadav-farmhouse',
@@ -56,10 +60,10 @@ export const projects: Project[] = [
     location: 'Rewari, Haryana',
     sqft: undefined,
     type: 'Farmhouse',
-    cover: 'placeholder',
+    cover: '/images/projects/dr-gautam-farmhouse.jpg',
+    images: ['/images/projects/dr-gautam-plan.jpg'],
     alt: 'Dr. Gautam Yadav Farmhouse at Rewari — architectural renders and floor plans',
-    description: 'A farmhouse retreat in Rewari, Haryana, designed with Vastu-compliant layouts and photo-realistic 3D renders guiding construction.',
-    pageRefs: [6, 7],
+    description: 'A spacious farmhouse retreat in Rewari, Haryana, with Vastu-compliant layouts, open-plan living, and photorealistic 3D renders guiding construction.',
   },
   {
     slug: 'anup-shokeen-residence',
@@ -67,10 +71,9 @@ export const projects: Project[] = [
     location: 'Vikaspuri, Delhi',
     sqft: undefined,
     type: 'Residential',
-    cover: 'placeholder',
+    cover: '/images/projects/anup-shokeen.jpg',
     alt: 'Anup Shokeen Residence — contemporary dark interiors in Vikaspuri',
-    description: 'Contemporary dark interiors for a prominent Delhi figure, featuring deep-toned wall panels, statement lighting, and bespoke furniture.',
-    pageRefs: [8],
+    description: 'Contemporary dark interiors for a prominent Delhi figure — deep-toned wall panels, statement pendant lighting, glass partitions, and sculpted bespoke furniture.',
   },
   {
     slug: 'jain-residence',
@@ -78,10 +81,10 @@ export const projects: Project[] = [
     location: 'Pitampura, Delhi',
     sqft: 3000,
     type: 'Residential',
-    cover: 'placeholder',
+    cover: '/images/projects/jain-residence-1.jpg',
+    images: ['/images/projects/jain-residence-2.jpg'],
     alt: 'Jain Residence — 3000 sq ft in Pitampura, Delhi',
-    description: 'A 3,000 sq.ft. family residence in Pitampura designed with elegant arch motifs, fluted wall panels, and warm walnut accents.',
-    pageRefs: [20],
+    description: 'A 3,000 sq.ft. family residence in Pitampura designed with elegant arch motifs, fluted wall panels, warm walnut accents, and a dedicated prayer room.',
   },
   {
     slug: 'veer-nagar-jain-colony',
@@ -89,10 +92,10 @@ export const projects: Project[] = [
     location: 'Delhi',
     sqft: undefined,
     type: 'Residential',
-    cover: 'placeholder',
+    cover: '/images/projects/veer-nagar-1.jpg',
+    images: ['/images/projects/veer-nagar-2.jpg'],
     alt: '16 Veer Nagar Jain Colony — drawing room and dining area renders',
-    description: 'Drawing room and dining area design featuring curated material palette, ribbed ceiling details, and sculpted accent walls.',
-    pageRefs: [21, 22],
+    description: 'Drawing room and dining area transformation featuring a curated material palette, ribbed ceiling details, stone-effect accent walls, and bespoke lighting.',
   },
   {
     slug: 'vallab-vihar-apartment',
@@ -100,10 +103,9 @@ export const projects: Project[] = [
     location: 'Delhi NCR',
     sqft: undefined,
     type: 'Apartment',
-    cover: 'placeholder',
-    alt: 'Vallab Vihar Apartment — living and dining area design',
-    description: 'Living and dining area design for this apartment, combining clean lines with warm textures and artful lighting.',
-    pageRefs: [26],
+    cover: '/images/projects/vallab-vihar.jpg',
+    alt: 'Vallab Vihar Apartment — living and dining area with teal accent wall',
+    description: 'Living and dining area for this apartment, combining a bold teal accent wall with clean-lined furniture, warm wood ceiling details, and contemporary art.',
   },
   {
     slug: 'varun-verma-little-unicorns',
@@ -111,10 +113,9 @@ export const projects: Project[] = [
     location: 'Delhi NCR',
     sqft: undefined,
     type: 'Commercial',
-    cover: 'placeholder',
+    cover: '/images/projects/little-unicorns.jpg',
     alt: 'Little Unicorns Playschool — owner Varun Verma commercial interior design',
-    description: 'A vibrant, child-friendly playschool interior combining safety-first design principles with an engaging, colourful aesthetic.',
-    pageRefs: [11],
+    description: 'A vibrant, child-friendly playschool interior combining safety-first design principles with an engaging, colourful aesthetic and optimised learning spaces.',
   },
   {
     slug: 'parasvnath-developers',
@@ -122,10 +123,9 @@ export const projects: Project[] = [
     location: 'Delhi NCR',
     sqft: undefined,
     type: 'Commercial',
-    cover: 'placeholder',
+    cover: '/images/projects/parasvnath.jpg',
     alt: 'Parasvnath Developers — tower lobby, clubhouse, and sample flat interiors',
-    description: 'Tower lobby, clubhouse, and sample flat interiors for a leading real estate developer — showcasing premium residential living.',
-    pageRefs: [35],
+    description: 'Tower lobby, clubhouse, and sample flat interiors for a leading real estate developer — designed to showcase aspirational premium residential living.',
   },
 ];
 

@@ -1,27 +1,31 @@
 ---
-// Achievements — About § 3: 3-col photo grid
+// Achievements — About § 3: 3-col photo grid with real achievement photos
 
 const achievements = [
   {
     id: 'design-award',
     title: 'Industry Recognition',
     caption: 'Design Award Recipient — Architecture & Interiors',
-    note: 'PDF P.4 — Award name to be confirmed by client',
-    gradient: 'linear-gradient(135deg, #8B3A0F 0%, #5C2408 100%)',
+    imgSrc: '/images/about/achievements.jpg',
+    imgAlt: 'Ar. Anchal Garg receiving a design award',
+    // The left portion of module_04 — award ceremony photo
+    objectPosition: 'left center',
   },
   {
     id: 'colston-collab',
     title: 'Brand Collaboration',
-    caption: 'Design Shoot with Colston Bathrooms — @colston_bathrooms',
-    note: 'PDF P.4 — Collaboration photoshoot',
-    gradient: 'linear-gradient(135deg, #6B2D0A 0%, #3D1805 100%)',
+    caption: 'Behind-the-shoot with @colston_bathrooms × @designsense.architects',
+    imgSrc: '/images/about/achievements.jpg',
+    imgAlt: 'Colston Bathrooms collaboration shoot with Design Sense',
+    objectPosition: 'center center',
   },
   {
     id: 'ace-jury',
     title: 'Jury Member',
-    caption: 'ACE Architecture Awards — Jury Panel',
-    note: 'PDF P.4 — ACE Architecture event',
-    gradient: 'linear-gradient(135deg, #A04515 0%, #6B2D0A 100%)',
+    caption: 'ACE Architecture Awards — Jury Panel Member',
+    imgSrc: '/images/about/achievements.jpg',
+    imgAlt: 'Ar. Anchal Garg as jury member at ACE Architecture Awards',
+    objectPosition: 'right center',
   },
 ];
 ---
@@ -43,27 +47,23 @@ const achievements = [
 
     <!-- Grid -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      {achievements.map(({ id, title, caption, note, gradient }) => (
+      {achievements.map(({ id, title, caption, imgSrc, imgAlt, objectPosition }) => (
         <figure class="group" id={`achievement-${id}`}>
-          <!-- Image placeholder -->
-          <div
-            class="relative rounded-lg overflow-hidden aspect-square mb-4"
-            style={`background: ${gradient};`}
-          >
-            <!-- Initial -->
-            <div
-              class="absolute inset-0 flex items-center justify-center font-display font-black uppercase opacity-10"
-              style="font-size: 7rem; color: var(--color-primary-contrast);"
-            >
-              ★
-            </div>
+          <!-- Image -->
+          <div class="relative rounded-lg overflow-hidden aspect-square mb-4 bg-stone-200 dark:bg-stone-800">
+            <img
+              src={imgSrc}
+              alt={imgAlt}
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              style={`object-position: ${objectPosition};`}
+              loading="lazy"
+              decoding="async"
+            />
             <!-- Hover overlay -->
             <div
               class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5"
-              style="background: linear-gradient(to top, rgba(26,16,8,0.8) 0%, transparent 60%);"
-            >
-              <p class="font-sans text-[10px] uppercase tracking-widest" style="color: color-mix(in srgb, var(--color-primary-contrast) 50%, transparent);">{note}</p>
-            </div>
+              style="background: linear-gradient(to top, rgba(26,16,8,0.7) 0%, transparent 60%);"
+            />
           </div>
           <!-- Caption -->
           <figcaption class="space-y-1">

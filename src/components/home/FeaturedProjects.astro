@@ -1,13 +1,6 @@
 ---
-// FeaturedProjects.astro — 3 featured project cards
+// FeaturedProjects.astro — 3 featured project cards with real images
 import { featuredProjects } from '../../data/projects';
-
-// Placeholder color palettes for 3 featured projects
-const placeholderGradients = [
-  'linear-gradient(135deg, #8B3A0F 0%, #5C2408 100%)',
-  'linear-gradient(135deg, #6B2D0A 0%, #3D1805 100%)',
-  'linear-gradient(135deg, #A04515 0%, #6B2D0A 100%)',
-];
 ---
 
 <section id="featured-projects" class="py-24 bg-background-light dark:bg-background-dark">
@@ -37,46 +30,38 @@ const placeholderGradients = [
 
     <!-- Cards -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      {featuredProjects.slice(0, 3).map((project, i) => (
+      {featuredProjects.slice(0, 3).map((project) => (
         <article
           class="group cursor-pointer"
           onclick={`window.location.href='/projects#${project.slug}'`}
         >
-          <!-- Image placeholder -->
-          <div
-            class="relative overflow-hidden rounded-lg mb-4 aspect-[4/3]"
-            style={`background: ${placeholderGradients[i % placeholderGradients.length]};`}
-          >
-            <!-- DS watermark -->
-            <div
-              class="absolute inset-0 flex items-center justify-center opacity-10 font-display font-black uppercase"
-              style="font-size: 5rem; color: var(--color-primary-contrast); letter-spacing: -0.05em;"
-            >
-              DS
-            </div>
+          <!-- Image -->
+          <div class="relative overflow-hidden rounded-lg mb-4 aspect-[4/3] bg-stone-200 dark:bg-stone-800">
+            <img
+              src={project.cover}
+              alt={project.alt}
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              loading="lazy"
+              decoding="async"
+            />
             <!-- Type badge -->
-            <div class="absolute top-4 left-4">
+            <div class="absolute top-4 left-4 z-10">
               <span
                 class="text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full font-display"
-                style="background-color: color-mix(in srgb, var(--color-primary-contrast) 90%, transparent); color: var(--color-primary);"
+                style="background-color: color-mix(in srgb, var(--color-primary-contrast) 92%, transparent); color: var(--color-primary);"
               >
                 {project.type}
               </span>
             </div>
             <!-- Hover overlay -->
             <div
-              class="absolute inset-0 flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              class="absolute inset-0 flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
               style="background: linear-gradient(to top, rgba(26,16,8,0.8) 0%, transparent 60%);"
             >
               <span class="font-sans text-xs font-semibold uppercase tracking-widest" style="color: var(--color-primary-contrast);">
                 View Project →
               </span>
             </div>
-            <!-- Scale on hover -->
-            <div
-              class="absolute inset-0 transition-transform duration-700 group-hover:scale-105"
-              style={`background: ${placeholderGradients[i % placeholderGradients.length]};`}
-            />
           </div>
 
           <!-- Info -->

@@ -1,5 +1,5 @@
 ---
-// BeforeAfter.astro — "We Deliver What We Promise" side-by-side strip
+// BeforeAfter.astro — "We Deliver What We Promise" — 3D render vs completed space
 ---
 
 <section id="before-after" class="py-24 bg-stone-900 dark:bg-background-dark overflow-hidden">
@@ -28,19 +28,17 @@
     <!-- Side-by-side comparison -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-10">
 
-      <!-- Left: 3D Render placeholder -->
+      <!-- Left: 3D Render -->
       <div class="relative rounded-lg overflow-hidden aspect-[4/3] group">
-        <div
-          class="absolute inset-0"
-          style="background: linear-gradient(135deg, var(--color-primary) 0%, #5C2408 100%);"
+        <img
+          src="/images/projects/pioneer-araya-1.jpg"
+          alt="Pioneer Araya — Photorealistic 3D render before construction"
+          class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          loading="lazy"
+          decoding="async"
         />
-        <!-- Watermark -->
-        <div
-          class="absolute inset-0 flex items-center justify-center font-display font-black uppercase opacity-10"
-          style="font-size: 6rem; color: var(--color-primary-contrast);"
-        >
-          3D
-        </div>
+        <!-- Rust overlay tint -->
+        <div class="absolute inset-0 opacity-20" style="background: var(--color-primary);" />
         <!-- Label -->
         <div class="absolute bottom-0 left-0 right-0 p-6" style="background: linear-gradient(to top, rgba(26,16,8,0.9) 0%, transparent 100%);">
           <span
@@ -53,25 +51,17 @@
             What we promise — photo-realistic visualisation before construction begins
           </p>
         </div>
-        <!-- Replace placeholder note -->
-        <div class="absolute top-4 right-4 opacity-40">
-          <p class="font-sans text-[10px] uppercase tracking-wider" style="color: var(--color-primary-contrast);">Image: P.38 PDF</p>
-        </div>
       </div>
 
-      <!-- Right: Site Photo placeholder -->
+      <!-- Right: Completed Space (real photo) -->
       <div class="relative rounded-lg overflow-hidden aspect-[4/3] group">
-        <div
-          class="absolute inset-0"
-          style="background: linear-gradient(135deg, #4A3728 0%, #2A1F16 100%);"
+        <img
+          src="/images/projects/vallab-vihar.jpg"
+          alt="Vallab Vihar — Completed living space matching the design vision"
+          class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          loading="lazy"
+          decoding="async"
         />
-        <!-- Watermark -->
-        <div
-          class="absolute inset-0 flex items-center justify-center font-display font-black uppercase opacity-10"
-          style="font-size: 4rem; color: var(--color-primary-contrast);"
-        >
-          DONE
-        </div>
         <!-- Label -->
         <div class="absolute bottom-0 left-0 right-0 p-6" style="background: linear-gradient(to top, rgba(26,16,8,0.9) 0%, transparent 100%);">
           <span
@@ -83,10 +73,6 @@
           <p class="font-sans text-sm" style="color: color-mix(in srgb, var(--color-primary-contrast) 70%, transparent);">
             What we deliver — the same space built exactly as visualised
           </p>
-        </div>
-        <!-- Replace placeholder note -->
-        <div class="absolute top-4 right-4 opacity-40">
-          <p class="font-sans text-[10px] uppercase tracking-wider" style="color: var(--color-primary-contrast);">Image: P.38 PDF</p>
         </div>
       </div>
     </div>
